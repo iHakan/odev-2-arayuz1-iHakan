@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 class App extends React.Component {
   render() {
     return (
-      <View>
+      <View >
         <Text>Yaptım!</Text>
       </View>
     );
@@ -17,11 +17,8 @@ class Hakan extends React.Component {
       <View>
         <App />
         <App />
-        <App />
-        <App />
-        <App />
-        <App />
-        <App />
+        <Text>Peki Bugün Nasılsın?</Text>
+        <Text>Peki Bugün Nasılsın?</Text>
         <App />
       </View>
     );
