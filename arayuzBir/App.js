@@ -3,8 +3,29 @@ import {View, Text} from 'react-native';
 
 class App extends React.Component {
   render() {
-    return <View>Başlangıç</View>;
+    return (
+      <View>
+        <Text>Yaptım!</Text>
+      </View>
+    );
   }
 }
 
-export default App;
+class Hakan extends React.Component {
+  render() {
+    return (
+      <View>
+        <App />
+        <App />
+        <App />
+        <App />
+        <App />
+        <App />
+        <App />
+        <App />
+      </View>
+    );
+  }
+}
+
+export default Hakan;
