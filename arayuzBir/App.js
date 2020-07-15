@@ -53,7 +53,7 @@ const stil = StyleSheet.create({
   },
   topContainer: {
     flex: 1,
-    borderWidth: 1,
+ 
     justifyContent: 'center',
     alignItems:'center'
   },
@@ -61,9 +61,7 @@ const stil = StyleSheet.create({
     width: W * 0.58,
     height: H * 0.3,
   },
-  bottomContainer: {
-    borderWidth: 1,
-  },
+  
   buttonContainer: {
     alignItems:'center',
     height: H * 0.25,
