@@ -5,10 +5,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  TouchableWithoutFeedback,
+  Image,
+  StatusBar,
 } from 'react-native';
 
 const renk1 = '#ff003f';
+const renk2 = '#303463';
 
 const W = Dimensions.get('window').width;
 const H = Dimensions.get('window').height;
@@ -17,16 +19,25 @@ class Arayuz1 extends React.Component {
   render() {
     return (
       <View style={stil.bodyContainer}>
-        <View style={stil.topContainer}></View>
+
+        <StatusBar backgroundColor={'#4749BD'}/>
+
+        <View style={stil.topContainer}>
+          <Image style={stil.logo} source={require('./assets/images/logo1.png')} />
+        </View>
 
         <View style={stil.bottomContainer}>
           <View style={stil.buttonContainer}>
-            <TouchableOpacity style={stil.signUpButton}>
-              <Text style={stil.buttonText}>Sign Up</Text>
+            <TouchableOpacity
+              activeOpacity
+              style={[stil.signUpButton, stil.button]}>
+              <Text style={stil.signUpButtonText}>Sign Up</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={stil.signInButton}>
-              <Text style={stil.buttonText}>Sign In</Text>
+            <TouchableOpacity
+              activeOpacity ={0.4}
+              style={[stil.signInButton, stil.button]}>
+              <Text style={stil.signInButtonText}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -43,35 +54,44 @@ const stil = StyleSheet.create({
   topContainer: {
     flex: 1,
     borderWidth: 1,
+    justifyContent: 'center',
+    alignItems:'center'
+  },
+  logo: {
+    width: W * 0.58,
+    height: H * 0.3,
   },
   bottomContainer: {
     borderWidth: 1,
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    alignItems:'center',
+    height: H * 0.25,
+  },
+  button: {
+    width: W * 0.7,
+    height: H * 0.05,
+    marginBottom: H*0.01,
+    paddingTop: 5,
+    paddingBottom: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: W * 0.175,
   },
   signUpButton: {
-    width: W * 0.35,
-    paddingTop: 5,
-    paddingBottom: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#303463',
-    borderRadius: W * 0.175,
+    backgroundColor: '#fff',
   },
   signInButton: {
-    width: W * 0.35,
-    paddingTop: 5,
-    paddingBottom: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#303463',
-    borderRadius: W * 0.175,
+    backgroundColor: renk2,
   },
-  buttonText:{
-    color:'white'
-  }
+  signUpButtonText: {
+    color: 'black',
+    fontSize: 16,
+  },
+  signInButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
 });
 
 export default Arayuz1;
