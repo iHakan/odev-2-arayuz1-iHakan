@@ -20,7 +20,7 @@ class Arayuz1 extends React.Component {
     return (
       <View style={stil.bodyContainer}>
 
-        <StatusBar backgroundColor={'#4749BD'}/>
+        <StatusBar backgroundColor={renk2}/>
 
         <View style={stil.topContainer}>
           <Image style={stil.logo} source={require('./assets/images/logo1.png')} />
