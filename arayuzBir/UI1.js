@@ -1,7 +1,7 @@
 import React from 'react';
 import {View as Body, Text, TextInput, TouchableOpacity, StatusBar} from 'react-native';
 
-class Abc extends React.Component {
+class UI1 extends React.Component {
   render() {
     return (
       <Body style={{width: '100%', height: '100%', backgroundColor: '#ff003f'}}>
@@ -59,4 +59,4 @@ class Abc extends React.Component {
   }
 }
 
-export default Abc;
+export default UI1;
