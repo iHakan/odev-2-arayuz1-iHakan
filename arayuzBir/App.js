@@ -59,15 +59,32 @@ state = {
 
         <TouchableOpacity
           activeOpacity={0.4}
-          style={[stil.signInButton, stil.button,stil.loginButton]} onPress={() => {
-            this.signInOnPress();
-          }}>
+          style={[stil.signInButton, stil.button,stil.loginButton]} 
+          >
           <Text
             style={stil.signInButtonText}
             >
             Oturum Aç
           </Text>
         </TouchableOpacity>
+
+          <Text
+            style={stil.signInButtonText, stil.orText}
+            >
+            Veya
+          </Text>
+        
+        <View style = {stil.smContainer}>
+
+          <TouchableOpacity style= {stil.smButton}>
+            <Text>Facebook</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style= {stil.smButton}>
+            <Text style= {stil.smText}>Google</Text>
+          </TouchableOpacity>
+
+        </View>
         
       </View>
     );
@@ -220,10 +237,38 @@ const stil = StyleSheet.create({
     marginRight: W *0.1,
     marginTop: H*0.02
   },
- loginButton :{
-   marginTop: H*0.1,
-   width: W*0.82
- }
+  loginButton :{
+    marginTop: H*0.02,
+    width: W*0.82
+ },
+ orText:{
+   fontSize:12,
+   color: 'white',
+   fontWeight:'bold',
+   marginTop: H*0.02
+ },
+ smContainer: {
+  width: W*1,
+  marginTop: H*0.02,
+  flexDirection: 'row',
+  justifyContent: 'space-evenly'
+  
+},
+smButton :{
+  width: W*0.25, 
+  height: H * 0.045,
+  backgroundColor: '#FCD793',  
+  borderRadius : 25,
+  alignItems : 'center',
+  justifyContent:'center'  
+},
+
+smText :{
+  color: renk2,
+  fontSize: 12,
+  fontWeight: 'bold',
+}
+ 
 });
 
 export default Arayuz1;
