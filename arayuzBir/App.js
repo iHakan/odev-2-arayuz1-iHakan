@@ -7,6 +7,7 @@ import {
   Dimensions,
   Image,
   StatusBar,
+  TextInput
 } from 'react-native';
 
 const renk1 = '#ff003f';
@@ -16,7 +17,7 @@ const H = Dimensions.get('window').height;
 
 class Arayuz1 extends React.Component {
 state = {
-  sayfa : ''
+  sayfa : 'signIn'
 };
 
   signUpOnPress() {
@@ -34,8 +35,44 @@ state = {
   }
 
   signIn() {
-    return <Text>signIn</Text>;
+    return (
+      <View style={stil.signInContainer}>
+        <View style= {stil.inputContainer}>
+        <Text style = {stil.inputCaption}>Kullanıcı Adı</Text>
+          <TextInput style= {stil.input}>
+              
+          </TextInput>
+        </View>
+
+        <View style= {stil.inputContainer}>
+        <Text style = {stil.inputCaption}>Şifre</Text>
+          <TextInput secureTextEntry style= {stil.input}>
+              
+          </TextInput>
+        </View>
+
+        <TouchableOpacity style={stil.passwordForgotButton}>
+          <Text style = {[stil.inputCaption, stil.passwordForgot]}>
+            Şifremi Unuttum?
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          activeOpacity={0.4}
+          style={[stil.signInButton, stil.button,stil.loginButton]} onPress={() => {
+            this.signInOnPress();
+          }}>
+          <Text
+            style={stil.signInButtonText}
+            >
+            Oturum Aç
+          </Text>
+        </TouchableOpacity>
+        
+      </View>
+    );
   }
+
 
   butonlar() {
     return (
@@ -136,6 +173,57 @@ const stil = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  signInContainer: {
+    
+    height: H * 0.45,
+  },
+  inputContainer:{
+    alignItems:'center'
+  },
+  inputCaption :{
+    color: renk2,
+    fontWeight: 'bold'
+  },
+  input: {
+    width: W*0.8,
+    fontWeight: 'bold',
+    borderBottomWidth: 1.5,
+    borderColor: renk2,
+    color : 'white',
+    paddingTop: 0
+  },
+  signInContainer: {
+    alignItems:'center',
+    height: H * 0.45,
+  },
+  inputContainer:{
+  },
+  inputCaption :{
+    color: renk2,
+    fontWeight: 'bold'
+  },
+  input: {
+    width: W*0.8,
+    fontWeight: 'bold',
+    borderBottomWidth: 1.5,
+    borderColor: renk2,
+    color : 'white',
+    paddingTop: 0
+  },
+  passwordForgot: {
+    fontSize: 12
+    
+  },
+   passwordForgotButton:{
+    
+    alignSelf: 'flex-end',
+    marginRight: W *0.1,
+    marginTop: H*0.02
+  },
+ loginButton :{
+   marginTop: H*0.1,
+   width: W*0.82
+ }
 });
 
 export default Arayuz1;
