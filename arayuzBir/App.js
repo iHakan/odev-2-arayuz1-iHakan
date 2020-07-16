@@ -7,7 +7,11 @@ import {
   Dimensions,
   Image,
   StatusBar,
-  TextInput
+  TextInput,
+  UIManager,
+  LayoutAnimation,
+  Platform,
+  Keyboard
 } from 'react-native';
 
 const renk1 = '#ff003f';
@@ -15,10 +19,26 @@ const renk2 = '#303463';
 const W = Dimensions.get('window').width;
 const H = Dimensions.get('window').height;
 
+//Animasyon kısmı için;
+const androidPhone = Platform.OS === 'android';
+
+if(androidPhone) UIManager.setLayoutAnimationEnabledExperimental(true);
+
+
 class Arayuz1 extends React.Component {
 state = {
-  sayfa : 'signIn'
+  sayfa : '',
+  klavye: false
 };
+
+  componentDidUpdate(){
+    LayoutAnimation.spring();
+  }
+
+  componentDidMount(){
+    Keyboard.addListener('keyboardDidShow', () => this.setState({klavye: true}));
+    Keyboard.addListener('keyboardDidHide', () => this.setState({klavye: false}));
+  }
 
   signUpOnPress() {
     this.setState({sayfa : 'signUp'});
@@ -130,7 +150,11 @@ state = {
 
         <View style={stil.topContainer}>
           <Image
-            style={stil.logo}
+            style={{
+              width: this.state.klavye ? W*0.2 : W*0.55,
+              height: this.state.klavye ? W*0.2 : W*0.55,
+              alignSelf: this.state.klavye ? 'flex-start' : null
+            }}
             source={require('./assets/images/logo1.png')}
           />
         </View>
@@ -155,11 +179,6 @@ const stil = StyleSheet.create({
 
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  logo: {
-    width: W * 0.54,
-    height: H * 0.28,
   },
 
   buttonContainer: {
