@@ -149,14 +149,21 @@ state = {
         />
 
         <View style={stil.topContainer}>
+          <View style = {[stil.imageContainer, {
+        marginTop: this.state.klavye ? H *0.08 : null, 
+        
+      }]}>
           <Image
             style={{
               width: this.state.klavye ? W*0.2 : W*0.55,
               height: this.state.klavye ? W*0.2 : W*0.55,
-              alignSelf: this.state.klavye ? 'flex-start' : null
+              alignSelf: this.state.klavye ? 'flex-start' : null,
+              
+              
             }}
             source={require('./assets/images/logo1.png')}
           />
+          </View>
         </View>
 
         <View style={stil.bottomContainer}>
@@ -181,6 +188,16 @@ const stil = StyleSheet.create({
     alignItems: 'center',
   },
 
+  imageContainer:{
+    borderRadius: 150,
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
+    shadowRadius : 150,
+    shadowOffset : {width:1, height:13},
+    elevation :15
+
+  },
+
   buttonContainer: {
     alignItems: 'center',
     height: H * 0.25,
@@ -194,6 +211,12 @@ const stil = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: W * 0.175,
+    shadowColor : 'black',
+    shadowOpacity: 0.8,
+    shadowRadius:25,
+    shadowOffset : {width: 1, height:13},
+    elevation: 5,
+    
   },
   signUpButton: {
     backgroundColor: '#fff',
