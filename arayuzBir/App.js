@@ -11,7 +11,7 @@ import {
   UIManager,
   LayoutAnimation,
   Platform,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 
 const renk1 = '#ff003f';
@@ -22,32 +22,33 @@ const H = Dimensions.get('window').height;
 //Animasyon kısmı için;
 const androidPhone = Platform.OS === 'android';
 
-if(androidPhone) UIManager.setLayoutAnimationEnabledExperimental(true);
-
+if (androidPhone) UIManager.setLayoutAnimationEnabledExperimental(true);
 
 class Arayuz1 extends React.Component {
-state = {
-  sayfa : '',
-  klavye: false
-};
+  state = {
+    sayfa: '',
+    klavye: false,
+  };
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     LayoutAnimation.spring();
   }
 
-  componentDidMount(){
-    Keyboard.addListener('keyboardDidShow', () => this.setState({klavye: true}));
-    Keyboard.addListener('keyboardDidHide', () => this.setState({klavye: false}));
+  componentDidMount() {
+    Keyboard.addListener('keyboardDidShow', () =>
+      this.setState({klavye: true}),
+    );
+    Keyboard.addListener('keyboardDidHide', () =>
+      this.setState({klavye: false}),
+    );
   }
 
   signUpOnPress() {
-    this.setState({sayfa : 'signUp'});
-    
+    this.setState({sayfa: 'signUp'});
   }
 
   signInOnPress() {
-    this.setState({sayfa : 'signIn'});
-    
+    this.setState({sayfa: 'signIn'});
   }
 
   signUp() {
@@ -57,59 +58,42 @@ state = {
   signIn() {
     return (
       <View style={stil.signInContainer}>
-        <View style= {stil.inputContainer}>
-        <Text style = {stil.inputCaption}>Kullanıcı Adı</Text>
-          <TextInput style= {stil.input}>
-              
-          </TextInput>
+        <View style={stil.inputContainer}>
+          <Text style={stil.inputCaption}>Kullanıcı Adı</Text>
+          <TextInput style={stil.input}></TextInput>
         </View>
 
-        <View style= {stil.inputContainer}>
-        <Text style = {stil.inputCaption}>Şifre</Text>
-          <TextInput secureTextEntry style= {stil.input}>
-              
-          </TextInput>
+        <View style={stil.inputContainer}>
+          <Text style={stil.inputCaption}>Şifre</Text>
+          <TextInput secureTextEntry style={stil.input}></TextInput>
         </View>
 
         <TouchableOpacity style={stil.passwordForgotButton}>
-          <Text style = {[stil.inputCaption, stil.passwordForgot]}>
+          <Text style={[stil.inputCaption, stil.passwordForgot]}>
             Şifremi Unuttum?
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           activeOpacity={0.4}
-          style={[stil.signInButton, stil.button,stil.loginButton]} 
-          >
-          <Text
-            style={stil.signInButtonText}
-            >
-            Oturum Aç
-          </Text>
+          style={[stil.signInButton, stil.button, stil.loginButton]}>
+          <Text style={stil.signInButtonText}>Oturum Aç</Text>
         </TouchableOpacity>
 
-          <Text
-            style={stil.signInButtonText, stil.orText}
-            >
-            Veya
-          </Text>
-        
-        <View style = {stil.smContainer}>
+        <Text style={(stil.signInButtonText, stil.orText)}>Veya</Text>
 
-          <TouchableOpacity style= {stil.smButton}>
+        <View style={stil.smContainer}>
+          <TouchableOpacity style={stil.smButton}>
             <Text>Facebook</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style= {stil.smButton}>
-            <Text style= {stil.smText}>Google</Text>
+          <TouchableOpacity style={stil.smButton}>
+            <Text style={stil.smText}>Google</Text>
           </TouchableOpacity>
-
         </View>
-        
       </View>
     );
   }
-
 
   butonlar() {
     return (
@@ -125,21 +109,18 @@ state = {
 
         <TouchableOpacity
           activeOpacity={0.4}
-          style={[stil.signInButton, stil.button]} onPress={() => {
+          style={[stil.signInButton, stil.button]}
+          onPress={() => {
             this.signInOnPress();
           }}>
-          <Text
-            style={stil.signInButtonText}
-            >
-            Sign In
-          </Text>
+          <Text style={stil.signInButtonText}>Sign In</Text>
         </TouchableOpacity>
       </View>
     );
   }
 
   render() {
-    console.log('render calışıyor!')
+    console.log('render calışıyor!');
     return (
       <View style={stil.bodyContainer}>
         <StatusBar
@@ -149,20 +130,21 @@ state = {
         />
 
         <View style={stil.topContainer}>
-          <View style = {[stil.imageContainer, {
-        marginTop: this.state.klavye ? H *0.08 : null, 
-        
-      }]}>
-          <Image
-            style={{
-              width: this.state.klavye ? W*0.2 : W*0.55,
-              height: this.state.klavye ? W*0.2 : W*0.55,
-              alignSelf: this.state.klavye ? 'flex-start' : null,
-              
-              
-            }}
-            source={require('./assets/images/logo1.png')}
-          />
+          <View
+            style={[
+              stil.imageContainer,
+              {
+                marginTop: this.state.klavye ? H * 0.08 : null,
+              },
+            ]}>
+            <Image
+              style={{
+                width: this.state.klavye ? W * 0.2 : W * 0.55,
+                height: this.state.klavye ? W * 0.2 : W * 0.55,
+                alignSelf: this.state.klavye ? 'flex-start' : null,
+              }}
+              source={require('./assets/images/logo1.png')}
+            />
           </View>
         </View>
 
@@ -188,14 +170,13 @@ const stil = StyleSheet.create({
     alignItems: 'center',
   },
 
-  imageContainer:{
+  imageContainer: {
     borderRadius: 150,
     shadowColor: 'black',
     shadowOpacity: 0.8,
-    shadowRadius : 150,
-    shadowOffset : {width:1, height:13},
-    elevation :15
-
+    shadowRadius: 150,
+    shadowOffset: {width: 1, height: 13},
+    elevation: 15,
   },
 
   buttonContainer: {
@@ -211,12 +192,11 @@ const stil = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: W * 0.175,
-    shadowColor : 'black',
+    shadowColor: 'black',
     shadowOpacity: 0.8,
-    shadowRadius:25,
-    shadowOffset : {width: 1, height:13},
+    shadowRadius: 25,
+    shadowOffset: {width: 1, height: 13},
     elevation: 5,
-    
   },
   signUpButton: {
     backgroundColor: '#fff',
@@ -233,84 +213,83 @@ const stil = StyleSheet.create({
     fontSize: 16,
   },
   signInContainer: {
-    
     height: H * 0.45,
   },
-  inputContainer:{
-    alignItems:'center'
+  inputContainer: {
+    alignItems: 'center',
   },
-  inputCaption :{
+  inputCaption: {
     color: renk2,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   input: {
-    width: W*0.8,
+    width: W * 0.8,
     fontWeight: 'bold',
     borderBottomWidth: 1.5,
     borderColor: renk2,
-    color : 'white',
-    paddingTop: 0
+    color: 'white',
+    paddingTop: 0,
   },
   signInContainer: {
-    alignItems:'center',
+    alignItems: 'center',
     height: H * 0.45,
   },
-  inputContainer:{
-  },
-  inputCaption :{
+  inputContainer: {},
+  inputCaption: {
     color: renk2,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   input: {
-    width: W*0.8,
+    width: W * 0.8,
     fontWeight: 'bold',
     borderBottomWidth: 1.5,
     borderColor: renk2,
-    color : 'white',
-    paddingTop: 0
+    color: 'white',
+    paddingTop: 0,
   },
   passwordForgot: {
-    fontSize: 12
-    
+    fontSize: 12,
   },
-   passwordForgotButton:{
-    
+  passwordForgotButton: {
     alignSelf: 'flex-end',
-    marginRight: W *0.1,
-    marginTop: H*0.02
+    marginRight: W * 0.1,
+    marginTop: H * 0.02,
   },
-  loginButton :{
-    marginTop: H*0.02,
-    width: W*0.82
- },
- orText:{
-   fontSize:12,
-   color: 'white',
-   fontWeight:'bold',
-   marginTop: H*0.02
- },
- smContainer: {
-  width: W*1,
-  marginTop: H*0.02,
-  flexDirection: 'row',
-  justifyContent: 'space-evenly'
-  
-},
-smButton :{
-  width: W*0.25, 
-  height: H * 0.045,
-  backgroundColor: '#FCD793',  
-  borderRadius : 25,
-  alignItems : 'center',
-  justifyContent:'center'  
-},
+  loginButton: {
+    marginTop: H * 0.02,
+    width: W * 0.82,
+  },
+  orText: {
+    fontSize: 12,
+    color: 'white',
+    fontWeight: 'bold',
+    marginTop: H * 0.02,
+  },
+  smContainer: {
+    width: W * 1,
+    marginTop: H * 0.02,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  smButton: {
+    width: W * 0.25,
+    height: H * 0.045,
+    backgroundColor: '#FCD793',
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: 'black',
+    shadowOpacity: 0.8,
+    shadowRadius: 25,
+    shadowOffset: {width: 1, height: 13},
+    elevation: 5,
+  },
 
-smText :{
-  color: renk2,
-  fontSize: 12,
-  fontWeight: 'bold',
-}
- 
+  smText: {
+    color: renk2,
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
 });
 
 export default Arayuz1;
