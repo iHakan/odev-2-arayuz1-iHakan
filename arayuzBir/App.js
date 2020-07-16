@@ -11,17 +11,22 @@ import {
 
 const renk1 = '#ff003f';
 const renk2 = '#303463';
-let sayfa = '';
 const W = Dimensions.get('window').width;
 const H = Dimensions.get('window').height;
 
 class Arayuz1 extends React.Component {
+state = {
+  sayfa : ''
+};
+
   signUpOnPress() {
-    alert('Test Başarılı!!!');
+    this.setState({sayfa : 'signUp'});
+    
   }
 
   signInOnPress() {
-    alert('SignIn Test Başarılı!!!');
+    this.setState({sayfa : 'signIn'});
+    
   }
 
   signUp() {
@@ -60,6 +65,7 @@ class Arayuz1 extends React.Component {
   }
 
   render() {
+    console.log('render calışıyor!')
     return (
       <View style={stil.bodyContainer}>
         <StatusBar
@@ -76,9 +82,9 @@ class Arayuz1 extends React.Component {
         </View>
 
         <View style={stil.bottomContainer}>
-          {sayfa === '' && this.butonlar()}
-          {sayfa === 'signUp' && this.signUp()}
-          {sayfa === 'ssignIn' && this.signIn()}
+          {this.state.sayfa === '' && this.butonlar()}
+          {this.state.sayfa === 'signUp' && this.signUp()}
+          {this.state.sayfa === 'signIn' && this.signIn()}
         </View>
       </View>
     );
