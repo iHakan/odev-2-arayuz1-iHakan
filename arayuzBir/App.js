@@ -26,7 +26,7 @@ if (androidPhone) UIManager.setLayoutAnimationEnabledExperimental(true);
 
 class Arayuz1 extends React.Component {
   state = {
-    sayfa: 'signIn', 
+    sayfa: '', 
     klavye: false,
   };
 
