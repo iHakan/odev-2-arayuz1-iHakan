@@ -192,10 +192,10 @@ const stil = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: W * 0.175,
-    shadowColor: 'black',
+    shadowColor : 'black',
     shadowOpacity: 0.8,
-    shadowRadius: 25,
-    shadowOffset: {width: 1, height: 13},
+    shadowRadius:2,
+    shadowOffset : {width: 0, height:0},
     elevation: 5,
   },
   signUpButton: {
@@ -278,11 +278,11 @@ const stil = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: 'black',
+    shadowColor : 'black',
     shadowOpacity: 0.8,
-    shadowRadius: 25,
-    shadowOffset: {width: 1, height: 13},
-    elevation: 5,
+    shadowRadius:2,
+    shadowOffset : {width: 0, height:0},
+    elevation: 5
   },
 
   smText: {
