@@ -174,9 +174,9 @@ const stil = StyleSheet.create({
     borderRadius: 150,
     shadowColor: 'black',
     shadowOpacity: 0.8,
-    shadowRadius: 150,
-    shadowOffset: {width: 1, height: 13},
-    elevation: 15,
+    shadowRadius: 5,
+    shadowOffset: {width: 0, height: 0},
+    elevation :10,
   },
 
   buttonContainer: {
