@@ -58,7 +58,9 @@ class Arayuz1 extends React.Component {
   signIn() {
     return (
       <View style={stil.signInContainer}>
-        <View style={stil.inputContainer}>
+        <View style= {[stil.inputContainer, {
+          marginTop: this.state.klavye ? H*0.15: null
+        }]}>
           <Text style={stil.inputCaption}>Kullanıcı Adı</Text>
           <TextInput style={stil.input}></TextInput>
         </View>
@@ -80,17 +82,24 @@ class Arayuz1 extends React.Component {
           <Text style={stil.signInButtonText}>Oturum Aç</Text>
         </TouchableOpacity>
 
-        <Text style={(stil.signInButtonText, stil.orText)}>Veya</Text>
 
-        <View style={stil.smContainer}>
-          <TouchableOpacity style={stil.smButton}>
-            <Text>Facebook</Text>
-          </TouchableOpacity>
+     {   
+        !this.state.klavye && 
+        <>
+          <Text style={(stil.signInButtonText, stil.orText)}>Veya</Text>
 
-          <TouchableOpacity style={stil.smButton}>
-            <Text style={stil.smText}>Google</Text>
-          </TouchableOpacity>
-        </View>
+          
+          <View style={stil.smContainer}>
+            <TouchableOpacity style={stil.smButton}>
+              <Text>Facebook</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={stil.smButton}>
+              <Text style={stil.smText}>Google</Text>
+            </TouchableOpacity>
+          </View>
+          </>
+      }
       </View>
     );
   }
