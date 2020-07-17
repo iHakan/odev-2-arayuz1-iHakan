@@ -139,7 +139,7 @@ class Arayuz1 extends React.Component {
         />
 
         <View style={stil.topContainer}>
-          <View
+          <TouchableOpacity onPress ={() => this.setState({sayfa:''})}
             style={[
               stil.imageContainer,
               {
@@ -154,7 +154,7 @@ class Arayuz1 extends React.Component {
               }}
               source={require('./assets/images/logo1.png')}
             />
-          </View>
+          </TouchableOpacity>
         </View>
 
         <View style={stil.bottomContainer}>
