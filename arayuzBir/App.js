@@ -26,7 +26,7 @@ if (androidPhone) UIManager.setLayoutAnimationEnabledExperimental(true);
 
 class Arayuz1 extends React.Component {
   state = {
-    sayfa: '',
+    sayfa: 'signIn', 
     klavye: false,
   };
 
@@ -59,14 +59,12 @@ class Arayuz1 extends React.Component {
     return (
       <View style={[stil.signInContainer,
         {
-          height : this.state.sayfa !== 'signIn' ? 0: undefined,
-          marginBottom: this.state.sayfa !== '' ? H*0.1 : undefined
+          height : this.state.sayfa !== 'signIn' ? H*0: undefined,
+          marginBottom: this.state.sayfa !== '' ? H*0.08 :undefined,
+          
         }
       ]}>
-        <View style= {[stil.inputContainer, {
-          marginTop: this.state.klavye ? H*0.05: null,
-      
-        }]}>
+        <View style= {stil.inputContainer}>
           <Text style={stil.inputCaption}>Kullanıcı Adı</Text>
           <TextInput style={stil.input}></TextInput>
         </View>
@@ -114,8 +112,8 @@ class Arayuz1 extends React.Component {
     return (
       <View style={[stil.buttonContainer,
       {
-        height: this.state.sayfa  !== '' ? H*0 : undefined,
-        marginBottom: this.state.sayfa !== 'sigIn' ? H*0.1 : undefined
+        height: this.state.sayfa  !== '' ? H* 0 : undefined,
+        marginBottom: this.state.sayfa !== 'sigIn' ? H*0.1 : undefined,
       }
       ]}>
         <TouchableOpacity
@@ -154,7 +152,7 @@ class Arayuz1 extends React.Component {
             style={[
               stil.imageContainer,
               {
-                marginTop: this.state.klavye ? H * 0.08 : null,
+                marginTop: this.state.klavye ? H * 0.2 : null,
               },
             ]}>
             <Image
@@ -175,7 +173,7 @@ class Arayuz1 extends React.Component {
           {/* Daha avantajlı bir yolu var o da aşağıdaki gibidir; */}
           {this.butonlar()}
           {this.signIn()}
-          {/* {this.signUp()} şuan çalışmadığımız için yorum haline getirdik*/}
+          {/* {this.signUp()} şuan çalışmadığımız için yorum haline getirdik */}
         </View>
       </View>
     );
@@ -189,7 +187,7 @@ const stil = StyleSheet.create({
   },
   topContainer: {
     flex: 1,
-
+    marginTop: H*0.05,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -213,7 +211,7 @@ const stil = StyleSheet.create({
   button: {
     width: W * 0.7,
     height: H * 0.05,
-    marginBottom: H * 0.01,
+    marginTop: H * 0.01,
     paddingTop: 5,
     paddingBottom: 5,
     justifyContent: 'center',
@@ -227,9 +225,11 @@ const stil = StyleSheet.create({
   },
   signUpButton: {
     backgroundColor: '#fff',
+    
   },
   signInButton: {
     backgroundColor: renk2,
+    marginBottom : H*0.015,
   },
   signUpButtonText: {
     color: 'black',
@@ -241,28 +241,13 @@ const stil = StyleSheet.create({
   },
   signInContainer: {
     height: H * 0.45,
-    overflow:"hidden"
+    overflow:"hidden",
+    alignItems: 'center',
+    
   },
   inputContainer: {
-    alignItems: 'center',
+    paddingTop: H*0.025,
   },
-  inputCaption: {
-    color: renk2,
-    fontWeight: 'bold',
-  },
-  input: {
-    width: W * 0.8,
-    fontWeight: 'bold',
-    borderBottomWidth: 1.5,
-    borderColor: renk2,
-    color: 'white',
-    paddingTop: 0,
-  },
-  signInContainer: {
-    alignItems: 'center',
-    height: H * 0.45,
-  },
-  inputContainer: {},
   inputCaption: {
     color: renk2,
     fontWeight: 'bold',
@@ -298,6 +283,7 @@ const stil = StyleSheet.create({
     marginTop: H * 0.02,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+    paddingBottom :10
   },
   smButton: {
     width: W * 0.25,
