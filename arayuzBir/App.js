@@ -57,9 +57,15 @@ class Arayuz1 extends React.Component {
 
   signIn() {
     return (
-      <View style={stil.signInContainer}>
+      <View style={[stil.signInContainer,
+        {
+          height : this.state.sayfa !== 'signIn' ? 0: undefined,
+          marginBottom: this.state.sayfa !== '' ? H*0.1 : undefined
+        }
+      ]}>
         <View style= {[stil.inputContainer, {
-          marginTop: this.state.klavye ? H*0.15: null
+          marginTop: this.state.klavye ? H*0.05: null,
+      
         }]}>
           <Text style={stil.inputCaption}>Kullanıcı Adı</Text>
           <TextInput style={stil.input}></TextInput>
@@ -106,7 +112,12 @@ class Arayuz1 extends React.Component {
 
   butonlar() {
     return (
-      <View style={stil.buttonContainer}>
+      <View style={[stil.buttonContainer,
+      {
+        height: this.state.sayfa  !== '' ? H*0 : undefined,
+        marginBottom: this.state.sayfa !== 'sigIn' ? H*0.1 : undefined
+      }
+      ]}>
         <TouchableOpacity
           activeOpacity={0.4}
           style={[stil.signUpButton, stil.button]}
@@ -158,9 +169,13 @@ class Arayuz1 extends React.Component {
         </View>
 
         <View style={stil.bottomContainer}>
-          {this.state.sayfa === '' && this.butonlar()}
+          {/* {this.state.sayfa === '' && this.butonlar()}
           {this.state.sayfa === 'signUp' && this.signUp()}
-          {this.state.sayfa === 'signIn' && this.signIn()}
+          {this.state.sayfa === 'signIn' && this.signIn()} */}
+          {/* Daha avantajlı bir yolu var o da aşağıdaki gibidir; */}
+          {this.butonlar()}
+          {this.signIn()}
+          {/* {this.signUp()} şuan çalışmadığımız için yorum haline getirdik*/}
         </View>
       </View>
     );
@@ -191,6 +206,9 @@ const stil = StyleSheet.create({
   buttonContainer: {
     alignItems: 'center',
     height: H * 0.25,
+    overflow:'hidden',
+    
+    
   },
   button: {
     width: W * 0.7,
@@ -223,6 +241,7 @@ const stil = StyleSheet.create({
   },
   signInContainer: {
     height: H * 0.45,
+    overflow:"hidden"
   },
   inputContainer: {
     alignItems: 'center',
