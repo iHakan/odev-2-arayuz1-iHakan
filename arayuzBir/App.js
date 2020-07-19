@@ -66,7 +66,7 @@ class Arayuz1 extends React.Component {
       ]}>
         <View style= {stil.inputContainer}>
           <Text style={stil.inputCaption}>Kullanıcı Adı</Text>
-          <TextInput style={stil.input}></TextInput>
+          <TextInput style={stil.input} keyboardType='email-address'></TextInput>
         </View>
 
         <View style={stil.inputContainer}>
