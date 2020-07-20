@@ -26,8 +26,9 @@ if (androidPhone) UIManager.setLayoutAnimationEnabledExperimental(true);
 
 class Arayuz1 extends React.Component {
   state = {
-    sayfa: '', 
+    sayfa: '',
     klavye: false,
+    klavyeH: 0,
   };
 
   componentDidUpdate() {
@@ -35,9 +36,10 @@ class Arayuz1 extends React.Component {
   }
 
   componentDidMount() {
-    Keyboard.addListener('keyboardDidShow', () =>
-      this.setState({klavye: true}),
-    );
+    Keyboard.addListener('keyboardDidShow', (e) => {
+      //console.log(e.endCoordinates.height); //klavye yüksekliğini ölçmek için kullandık.<
+      this.setState({klavye: true, klavyeH: e.endCoordinates.height});
+    });
     Keyboard.addListener('keyboardDidHide', () =>
       this.setState({klavye: false}),
     );
@@ -57,16 +59,19 @@ class Arayuz1 extends React.Component {
 
   signIn() {
     return (
-      <View style={[stil.signInContainer,
-        {
-          height : this.state.sayfa !== 'signIn' ? H*0: undefined,
-          marginBottom: this.state.sayfa !== '' ? H*0.08 :undefined,
-          
-        }
-      ]}>
-        <View style= {stil.inputContainer}>
+      <View
+        style={[
+          stil.signInContainer,
+          {
+            height: this.state.sayfa !== 'signIn' ? H * 0 : undefined,
+            marginBottom: this.state.sayfa !== '' ? H * 0.08 : undefined,
+          },
+        ]}>
+        <View style={stil.inputContainer}>
           <Text style={stil.inputCaption}>Kullanıcı Adı</Text>
-          <TextInput style={stil.input} keyboardType='email-address'></TextInput>
+          <TextInput
+            style={stil.input}
+            keyboardType="email-address"></TextInput>
         </View>
 
         <View style={stil.inputContainer}>
@@ -86,36 +91,35 @@ class Arayuz1 extends React.Component {
           <Text style={stil.signInButtonText}>Oturum Aç</Text>
         </TouchableOpacity>
 
+        {!this.state.klavye && (
+          <>
+            <Text style={(stil.signInButtonText, stil.orText)}>Veya</Text>
 
-     {   
-        !this.state.klavye && 
-        <>
-          <Text style={(stil.signInButtonText, stil.orText)}>Veya</Text>
+            <View style={stil.smContainer}>
+              <TouchableOpacity style={stil.smButton}>
+                <Text>Facebook</Text>
+              </TouchableOpacity>
 
-          
-          <View style={stil.smContainer}>
-            <TouchableOpacity style={stil.smButton}>
-              <Text>Facebook</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={stil.smButton}>
-              <Text style={stil.smText}>Google</Text>
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity style={stil.smButton}>
+                <Text style={stil.smText}>Google</Text>
+              </TouchableOpacity>
+            </View>
           </>
-      }
+        )}
       </View>
     );
   }
 
   butonlar() {
     return (
-      <View style={[stil.buttonContainer,
-      {
-        height: this.state.sayfa  !== '' ? H* 0 : undefined,
-        marginBottom: this.state.sayfa !== 'sigIn' ? H*0.1 : undefined,
-      }
-      ]}>
+      <View
+        style={[
+          stil.buttonContainer,
+          {
+            height: this.state.sayfa !== '' ? H * 0 : undefined,
+            marginBottom: this.state.sayfa !== 'sigIn' ? H * 0.1 : undefined,
+          },
+        ]}>
         <TouchableOpacity
           activeOpacity={0.4}
           style={[stil.signUpButton, stil.button]}
@@ -140,42 +144,52 @@ class Arayuz1 extends React.Component {
   render() {
     console.log('render calışıyor!');
     return (
-      <View style={stil.bodyContainer}>
-        <StatusBar
-          translucent
-          barStyle={'light-content'}
-          backgroundColor={renk2}
-        />
+      <>
+        <View style={stil.bodyContainer}>
+          <StatusBar
+            translucent
+            barStyle={'light-content'}
+            backgroundColor={renk2}
+          />
 
-        <View style={stil.topContainer}>
-          <TouchableOpacity onPress ={() => this.setState({sayfa:''})}
-            style={[
-              stil.imageContainer,
-              {
-                marginTop: this.state.klavye ? H * 0.2 : null,
-              },
-            ]}>
-            <Image
-              style={{
-                width: this.state.klavye ? W * 0.2 : W * 0.55,
-                height: this.state.klavye ? W * 0.2 : W * 0.55,
-                alignSelf: this.state.klavye ? 'flex-start' : null,
-              }}
-              source={require('./assets/images/logo1.png')}
-            />
-          </TouchableOpacity>
-        </View>
+          <View style={stil.topContainer}>
+            <TouchableOpacity
+              onPress={() => this.setState({sayfa: ''})}
+              style={[
+                stil.imageContainer,
+                {
+                  marginTop: this.state.klavye ? H * 0.2 : null,
+                },
+              ]}>
+              <Image
+                style={{
+                  width: this.state.klavye ? W * 0.2 : W * 0.55,
+                  height: this.state.klavye ? W * 0.2 : W * 0.55,
+                  alignSelf: this.state.klavye ? 'flex-start' : null,
+                }}
+                source={require('./assets/images/logo1.png')}
+              />
+            </TouchableOpacity>
+          </View>
 
-        <View style={stil.bottomContainer}>
-          {/* {this.state.sayfa === '' && this.butonlar()}
+          <View style={stil.bottomContainer}>
+            {/* {this.state.sayfa === '' && this.butonlar()}
           {this.state.sayfa === 'signUp' && this.signUp()}
           {this.state.sayfa === 'signIn' && this.signIn()} */}
-          {/* Daha avantajlı bir yolu var o da aşağıdaki gibidir; */}
-          {this.butonlar()}
-          {this.signIn()}
-          {/* {this.signUp()} şuan çalışmadığımız için yorum haline getirdik */}
+            {/* Daha avantajlı bir yolu var o da aşağıdaki gibidir; */}
+            {this.butonlar()}
+            {this.signIn()}
+            {/* {this.signUp()} şuan çalışmadığımız için yorum haline getirdik */}
+          </View>
         </View>
-      </View>
+        <View
+          style={{
+            height: this.state.klavye && !androidPhone ? this.state.klavyeH : 0,
+            width: W,
+            backgroundColor: renk1,
+          }}
+        />
+      </>
     );
   }
 }
@@ -187,7 +201,7 @@ const stil = StyleSheet.create({
   },
   topContainer: {
     flex: 1,
-    marginTop: H*0.05,
+    marginTop: H * 0.05,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -198,15 +212,13 @@ const stil = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 5,
     shadowOffset: {width: 0, height: 0},
-    elevation :10,
+    elevation: 10,
   },
 
   buttonContainer: {
     alignItems: 'center',
     height: H * 0.25,
-    overflow:'hidden',
-    
-    
+    overflow: 'hidden',
   },
   button: {
     width: W * 0.7,
@@ -217,19 +229,18 @@ const stil = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: W * 0.175,
-    shadowColor : 'black',
+    shadowColor: 'black',
     shadowOpacity: 0.8,
-    shadowRadius:2,
-    shadowOffset : {width: 0, height:0},
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 0},
     elevation: 5,
   },
   signUpButton: {
     backgroundColor: '#fff',
-    
   },
   signInButton: {
     backgroundColor: renk2,
-    marginBottom : H*0.015,
+    marginBottom: H * 0.015,
   },
   signUpButtonText: {
     color: 'black',
@@ -241,12 +252,11 @@ const stil = StyleSheet.create({
   },
   signInContainer: {
     height: H * 0.45,
-    overflow:"hidden",
+    overflow: 'hidden',
     alignItems: 'center',
-    
   },
   inputContainer: {
-    paddingTop: H*0.025,
+    paddingTop: H * 0.025,
   },
   inputCaption: {
     color: renk2,
@@ -283,7 +293,7 @@ const stil = StyleSheet.create({
     marginTop: H * 0.02,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    paddingBottom :10
+    paddingBottom: 10,
   },
   smButton: {
     width: W * 0.25,
@@ -292,11 +302,11 @@ const stil = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor : 'black',
+    shadowColor: 'black',
     shadowOpacity: 0.8,
-    shadowRadius:2,
-    shadowOffset : {width: 0, height:0},
-    elevation: 5
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 0},
+    elevation: 5,
   },
 
   smText: {
