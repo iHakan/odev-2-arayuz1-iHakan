@@ -36,12 +36,16 @@ class Arayuz1 extends React.Component {
   }
 
   componentDidMount() {
-    Keyboard.addListener('keyboardDidShow', (e) => {
-      //console.log(e.endCoordinates.height); //klavye yüksekliğini ölçmek için kullandık.<
-      this.setState({klavye: true, klavyeH: e.endCoordinates.height});
-    });
-    Keyboard.addListener('keyboardDidHide', () =>
-      this.setState({klavye: false}),
+    Keyboard.addListener(
+      androidPhone ? 'keyboardDidShow' : 'keyboardWillShow',
+      (e) => {
+        //console.log(e.endCoordinates.height); //klavye yüksekliğini ölçmek için kullandık.<
+        this.setState({klavye: true, klavyeH: e.endCoordinates.height});
+      },
+    );
+    Keyboard.addListener(
+      androidPhone ? 'keyboardDidHide' : 'keyboardWillHide',
+      () => this.setState({klavye: false}),
     );
   }
 
@@ -154,7 +158,9 @@ class Arayuz1 extends React.Component {
 
           <View style={stil.topContainer}>
             <TouchableOpacity
-              onPress={() => this.setState({sayfa: ''})}
+              onPress={() =>
+                this.setState({sayfa: ''}, () => Keyboard.dismiss())
+              }
               style={[
                 stil.imageContainer,
                 {
