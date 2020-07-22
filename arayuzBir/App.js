@@ -33,6 +33,24 @@ class Arayuz1 extends React.Component {
     klavyeH: 0,
   };
 
+  //////kendi stateimizi oluşturmak istersek ;////////
+
+  /*bizimState = {
+    sayfa: '',
+    klavye: false,
+    klavyeH: 0,
+  };
+
+  bizimSetState(veri, fonksiyon) {
+    if (!veri) return;
+
+    this.state = {...this.state, ...veri};
+    setTimeout(() => this.forceUpdate(), 10);
+
+    if (fonksiyon) fonksiyon();
+  }*/
+  ///////////////////////////////////////////////////////
+
   //Life cycle methods kısmına giriş,
 
   componentDidMount() {
