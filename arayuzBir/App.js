@@ -14,6 +14,8 @@ import {
   Keyboard,
 } from 'react-native';
 
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+
 const renk1 = '#ff003f';
 const renk2 = '#303463';
 const W = Dimensions.get('window').width;
@@ -31,9 +33,7 @@ class Arayuz1 extends React.Component {
     klavyeH: 0,
   };
 
-  componentDidUpdate() {
-    LayoutAnimation.spring();
-  }
+  //Life cycle methods kısmına giriş,
 
   componentDidMount() {
     Keyboard.addListener(
@@ -47,6 +47,15 @@ class Arayuz1 extends React.Component {
       androidPhone ? 'keyboardDidHide' : 'keyboardWillHide',
       () => this.setState({klavye: false}),
     );
+  }
+
+  componentDidUpdate() {
+    console.log('componentDidUpdate');
+    LayoutAnimation.spring();
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
   }
 
   signUpOnPress() {
@@ -146,10 +155,22 @@ class Arayuz1 extends React.Component {
   }
 
   render() {
-    console.log('render calışıyor!');
+    console.log('render çalıştı!');
+    {
+      /*return (
+      <>
+        <View style={{height: getStatusBarHeight()}} />
+        <StatusBar barStyle={'light-content'} />
+        <Text>Our test is here!</Text>
+      </>
+    );*/
+    }
     return (
       <>
-        <View style={stil.bodyContainer}>
+        <TouchableOpacity
+          style={stil.bodyContainer}
+          onPress={() => Keyboard.dismiss()}
+          activeOpacity={1}>
           <StatusBar
             translucent
             barStyle={'light-content'}
@@ -187,7 +208,7 @@ class Arayuz1 extends React.Component {
             {this.signIn()}
             {/* {this.signUp()} şuan çalışmadığımız için yorum haline getirdik */}
           </View>
-        </View>
+        </TouchableOpacity>
         <View
           style={{
             height: this.state.klavye && !androidPhone ? this.state.klavyeH : 0,
